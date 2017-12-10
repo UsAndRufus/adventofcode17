@@ -1,5 +1,15 @@
-pub fn solve(captcha: &str) -> i32 {
-    1
+use std::cmp::Ordering;
+
+pub fn solve(captcha: &str) -> u32 {
+    let n1 = captcha.chars().nth(0).unwrap().to_digit(10).unwrap();
+    let n2 = captcha.chars().nth(0 + 1).unwrap().to_digit(10).unwrap();
+    let mut sum = 0;
+    sum += match n1.cmp(&n2) {
+        Ordering::Equal => n1 + n2,
+        _ => 0,
+    };
+
+    return sum;
 }
 
 

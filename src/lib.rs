@@ -10,7 +10,7 @@ pub fn solve(captcha: &str) -> u32 {
         let n1 = captcha[i];
         let n2 = captcha[i + 1];
         sum += match n1.cmp(&n2) {
-            Ordering::Equal => n1 + n2,
+            Ordering::Equal => n1,
             _ => 0,
         };
     }

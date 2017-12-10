@@ -15,6 +15,11 @@ pub fn solve(captcha: &str) -> u32 {
         };
     }
 
+    sum += match captcha[captcha.len() - 1].cmp(&captcha[0]) {
+        Ordering::Equal => captcha[0],
+        _ => 0,
+    };
+
     println!("Sum is {}", sum);
 
     return sum;

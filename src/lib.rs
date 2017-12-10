@@ -1,19 +1,33 @@
 use std::cmp::Ordering;
 
 pub fn solve(captcha: &str) -> u32 {
-    let n1 = get_digit(captcha, 0);
-    let n2 = get_digit(captcha, 1);
+
     let mut sum = 0;
-    sum += match n1.cmp(&n2) {
-        Ordering::Equal => n1 + n2,
-        _ => 0,
-    };
+
+    let captcha: Vec<u32> = convert_string_to_vec_of_u32s(captcha);
+
+    for i in 0..(captcha.len() - 1) {
+        let n1 = captcha[i];
+        let n2 = captcha[i + 1];
+        sum += match n1.cmp(&n2) {
+            Ordering::Equal => n1 + n2,
+            _ => 0,
+        };
+    }
+
+    println!("Sum is {}", sum);
 
     return sum;
 }
 
-fn get_digit(s: &str, i: usize) -> u32 {
-    return s.chars().nth(i).unwrap().to_digit(10).unwrap();
+fn convert_string_to_vec_of_u32s(s: &str) -> Vec<u32> {
+    let mut v = Vec::new();
+
+    for c in s.chars() {
+        v.push(c.to_digit(10).unwrap());
+    }
+
+    return v;
 }
 
 
